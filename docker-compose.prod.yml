@@ -1,0 +1,8 @@
+# Production override: use the image published by GitHub Actions instead of building.
+#   IMAGE=ghcr.io/<user>/docker-cicd-demo:latest \
+#   docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+services:
+  app:
+    image: ${IMAGE:?set IMAGE to the ghcr.io image}
+    build: !reset null
+    pull_policy: always
